@@ -28,4 +28,4 @@ The baseline will be compared against the system after hardening
 to demonstrate the effect of the security controls implemented
 during the project.
 
-## picture not shown for security reasons.
+### Screenshot not shown for security reasons.
