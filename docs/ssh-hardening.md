@@ -20,4 +20,4 @@ The server was successfully accessed using the SSH private key,
 confirming that password-based SSH authentication was not required
 for this connection.
 
-![SSH key authentication without password](../screenshots/ssh-key-no-password.png)
+![SSH key authentication without password](../screenshots/02-ssh-key-no-password.png)
