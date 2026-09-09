@@ -22,7 +22,7 @@ The server was successfully accessed using the SSH private key,
 confirming that password-based SSH authentication was not required for
 this connection.
 
-![SSH key authentication without password](../screenshots/02-ssh-key-no-password.png)
+![SSH key authentication without password](../screenshots/02-ssh-key-no-pass.png)
 
 ![SSH login success](../screenshots/03-login-successful.png)
 
