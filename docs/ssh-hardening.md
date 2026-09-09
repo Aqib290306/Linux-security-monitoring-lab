@@ -9,7 +9,7 @@ of remotely accessing the Ubuntu server.
 
 ### Configuration
 
-An ED25519 SSH key pair was generated and used for authentication. The
+An SSH key pair was generated and used for authentication. The
 public key was added to the `analyst` user's `authorized_keys` file on
 the Ubuntu server.
 
