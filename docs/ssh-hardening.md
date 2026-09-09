@@ -166,8 +166,9 @@ available.
 
 ### Password Authentication Test
 
-An SSH connection was attempted with public-key authentication
-explicitly disabled:
+An SSH connection was attempted from Windows with public-key
+authentication disabled and password authentication selected as the
+preferred authentication method:
 
 ```powershell
 ssh -p 2222 -o PubkeyAuthentication=no -o PreferredAuthentications=password -o NumberOfPasswordPrompts=0 analyst@127.0.0.1
@@ -179,8 +180,17 @@ The connection was rejected:
 Permission denied (publickey,password).
 ```
 
-This demonstrated that password authentication could not be used to
-authenticate to the SSH service.
+The effective SSH configuration had already been verified on the Ubuntu
+server with `sshd -T`, showing:
+
+```text
+passwordauthentication no
+kbdinteractiveauthentication no
+pubkeyauthentication yes
+```
+
+Together, these checks confirmed that password-based SSH authentication
+was disabled.
 
 ![Password authentication blocked](../screenshots/07-password-authentication-blocked.png)
 
@@ -198,13 +208,14 @@ successfully authenticated to the Ubuntu server.
 This confirmed that public-key authentication remained functional after
 password-based SSH authentication was disabled.
 
-![SSH key authentication successful](../screenshots/08-key-authentication-still-working.png)
+![SSH key authentication successful](../screenshots/08-key-authentication-still-works.png)
 
 ### Result
 
-The tests confirmed that:
+The authentication tests confirmed that:
 
-- Password-based SSH authentication was blocked.
+- Password-based SSH authentication was disabled in the effective SSH
+  configuration.
+- A password-only authentication attempt was unsuccessful.
 - Public-key SSH authentication remained functional.
-- The SSH hardening configuration did not prevent legitimate
-  key-based access.
+- The SSH hardening changes did not prevent legitimate key-based access.
