@@ -112,7 +112,7 @@ The hardening configuration was therefore placed later in the
 configuration order so that the intended security settings would take
 precedence.
 
-![SSH configuration conflict](../screenshots/05-ssh-config-conflict.png)
+![SSH configuration conflict](../screenshots/0-ssh-config-conflict.png)
 
 ---
 
