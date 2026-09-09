@@ -155,3 +155,56 @@ The configuration conflict with `cloud-init` was identified and resolved,
 demonstrating the importance of verifying the effective SSH
 configuration rather than relying only on the contents of a single
 configuration file.
+
+---
+
+## 7. SSH Authentication Testing
+
+The hardened SSH configuration was tested to verify that password-based
+authentication was disabled while public-key authentication remained
+available.
+
+### Password Authentication Test
+
+An SSH connection was attempted with public-key authentication
+explicitly disabled:
+
+```powershell
+ssh -p 2222 -o PubkeyAuthentication=no -o PreferredAuthentications=password -o NumberOfPasswordPrompts=0 analyst@127.0.0.1
+```
+
+The connection was rejected:
+
+```text
+Permission denied (publickey,password).
+```
+
+This demonstrated that password authentication could not be used to
+authenticate to the SSH service.
+
+![Password authentication blocked](../screenshots/07-password-authentication-blocked.png)
+
+### Public-Key Authentication Test
+
+A second connection was made using the ED25519 private key:
+
+```powershell
+ssh -p 2222 -i "$env:USERPROFILE\.ssh\id_ed25519" analyst@127.0.0.1
+```
+
+The SSH key passphrase was entered locally, and the connection
+successfully authenticated to the Ubuntu server.
+
+This confirmed that public-key authentication remained functional after
+password-based SSH authentication was disabled.
+
+![SSH key authentication successful](../screenshots/08-key-authentication-still-working.png)
+
+### Result
+
+The tests confirmed that:
+
+- Password-based SSH authentication was blocked.
+- Public-key SSH authentication remained functional.
+- The SSH hardening configuration did not prevent legitimate
+  key-based access.
