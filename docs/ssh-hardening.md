@@ -42,6 +42,9 @@ The initial configuration showed:
 This established the baseline configuration before security changes
 were applied.
 
+The baseline configuration can also be seen in the SSH configuration
+verification evidence in the next section.
+
 ---
 
 ## 3. SSH Hardening Configuration
@@ -65,6 +68,9 @@ sudo sshd -t
 ```
 
 The configuration passed the syntax check without errors.
+
+The SSH service was then restarted so that the configuration changes
+could be applied.
 
 ![SSH hardening configuration check](../screenshots/04-ssh-hardening-check.png)
 
@@ -91,11 +97,20 @@ This configuration contained:
 PasswordAuthentication yes
 ```
 
-The conflict demonstrated that changing a single SSH configuration file
-does not necessarily change the final effective SSH configuration.
+The investigation also showed the dedicated hardening configuration:
 
-The hardening configuration was therefore reordered so that the
-intended security settings would take precedence.
+```text
+/etc/ssh/sshd_config.d/99-cyberlab-hardening.conf
+```
+
+which contained the intended security settings.
+
+The conflict demonstrated that multiple SSH configuration files can
+affect the final effective SSH configuration.
+
+The hardening configuration was therefore placed later in the
+configuration order so that the intended security settings would take
+precedence.
 
 ![SSH configuration conflict](../screenshots/05-ssh-config-conflict.png)
 
@@ -130,7 +145,7 @@ The SSH service was successfully hardened by:
 - Disabling password-based SSH authentication.
 - Disabling keyboard-interactive authentication.
 - Retaining public-key authentication.
-- Restricting direct root SSH authentication.
+- Preventing password-based root SSH authentication.
 - Validating the SSH configuration before applying changes.
 - Identifying and resolving a configuration precedence conflict.
 
