@@ -21,3 +21,4 @@ confirming that password-based SSH authentication was not required
 for this connection.
 
 ![SSH key authentication without password](../screenshots/02-ssh-key-no-password.png)
+![SSH login success](../screenshots/03-login-successful.png)
