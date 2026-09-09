@@ -196,10 +196,10 @@ was disabled.
 
 ### Public-Key Authentication Test
 
-A second connection was made using the ED25519 private key:
+A second connection was made using the private key:
 
 ```powershell
-ssh -p 2222 -i "$env:USERPROFILE\.ssh\id_ed25519" analyst@127.0.0.1
+ssh -p 2222 -i "$env:USERPROFILE\.ssh\(priv key)" analyst@127.0.0.1
 ```
 
 The SSH key passphrase was entered locally, and the connection
@@ -208,7 +208,7 @@ successfully authenticated to the Ubuntu server.
 This confirmed that public-key authentication remained functional after
 password-based SSH authentication was disabled.
 
-![SSH key authentication successful](../screenshots/08-key-authentication-still-works.png)
+![SSH key authentication successful](../screenshots/08-key-authentication-still-working.png)
 
 ### Result
 
